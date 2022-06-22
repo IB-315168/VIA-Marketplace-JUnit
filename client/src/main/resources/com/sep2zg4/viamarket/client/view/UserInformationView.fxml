@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sep2zg4.viamarket.client.view.UserInformationViewController">
+  <children>
+    <MenuBar VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" onAction="#create" text="Create">
+          <items>
+            <MenuItem fx:id="create" mnemonicParsing="false" onAction="#create" text="Create" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" onAction="#edit" text="Edit">
+          <items>
+            <MenuItem fx:id="edit" mnemonicParsing="false" onAction="#edit" text="Edit" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Remove">
+          <items>
+            <MenuItem fx:id="remove" mnemonicParsing="false" onAction="#remove" text="Remove" />
+                  <MenuItem mnemonicParsing="false" onAction="#deleteWishlistItem" text="Remove from Wishlist" />
+          </items>
+        </Menu>
+            <Menu mnemonicParsing="false" text="Back">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#goBack" text="Back" />
+              </items>
+            </Menu>
+      </menus>
+    </MenuBar>
+      <SplitPane dividerPositions="0.5" prefHeight="377.0" prefWidth="640.0">
+         <items>
+          <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="327.0" prefWidth="243.0">
+            <children>
+                  <Label fx:id="userName" alignment="CENTER" contentDisplay="CENTER" layoutX="164.0" layoutY="14.0" prefHeight="58.0" prefWidth="310.0" text="User name">
+                     <font>
+                        <Font name="Agency FB Bold" size="48.0" />
+                     </font>
+                  </Label>
+                  <ListView fx:id="userListings" layoutX="185.0" layoutY="101.0" prefHeight="200.0" prefWidth="267.0" />
+                  <ListView fx:id="userWishList" layoutX="185.0" layoutY="373.0" prefHeight="161.0" prefWidth="267.0" />
+                  <Label layoutX="185.0" layoutY="73.0" text="My Listings" />
+                  <Label layoutX="185.0" layoutY="347.0" text="My Wishlist" />
+            </children>
+          </AnchorPane>
+            <AnchorPane prefHeight="477.0" prefWidth="212.0">
+               <children>
+                  <Label alignment="CENTER" layoutX="56.0" layoutY="14.0" style="&#10;" text="Listing Details" textAlignment="CENTER" wrapText="false">
+                     <font>
+                        <Font size="18.0" fx:id="x1" />
+                     </font>
+                     <textFill>
+                        <Color blue="0.624" green="0.624" red="0.624" fx:id="x2" />
+                     </textFill>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="50.0" text="Title:" />
+                  <Label layoutX="14.0" layoutY="339.0" text="Description:" />
+                  <Label layoutX="9.0" layoutY="102.0" text="Price:" />
+                  <Label layoutX="11.0" layoutY="154.0" text="City:" />
+                  <Label layoutX="10.0" layoutY="206.0" text="Condition:" />
+                  <Label layoutX="13.0" layoutY="258.0" text="Contacts:" />
+                  <Label fx:id="title" alignment="TOP_LEFT" layoutX="10.0" layoutY="68.0" prefHeight="34.0" prefWidth="200.0" />
+                  <Label fx:id="price" alignment="TOP_LEFT" layoutX="11.0" layoutY="120.0" prefHeight="34.0" prefWidth="200.0" />
+                  <Label fx:id="city" alignment="TOP_LEFT" layoutX="10.0" layoutY="172.0" prefHeight="34.0" prefWidth="200.0" />
+                  <Label fx:id="condition" alignment="TOP_LEFT" layoutX="10.0" layoutY="224.0" prefHeight="34.0" prefWidth="200.0" />
+                  <Label fx:id="contacts" alignment="TOP_LEFT" layoutX="10.0" layoutY="279.0" prefHeight="58.0" prefWidth="200.0" />
+                  <TextArea fx:id="description" editable="false" layoutX="10.0" layoutY="357.0" prefHeight="202.0" prefWidth="200.0" />
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+  </children>
+</VBox>

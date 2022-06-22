@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="748.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sep2zg4.viamarket.client.view.ListingsViewController">
+  <children>
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="User Information">
+            <items>
+              <MenuItem fx:id="usersInformation" mnemonicParsing="false" onAction="#userInformation" text="User Information" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Back">
+            <items>
+              <MenuItem fx:id="back" mnemonicParsing="false" onAction="#goBack" text="Back" />
+            </items>
+          </Menu>
+            <Menu fx:id="moderatorPanel" mnemonicParsing="false" text="Moderator">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#createCategory" text="Create Category" />
+                  <MenuItem mnemonicParsing="false" onAction="#deleteCategory" text="Delete Category" />
+                  <MenuItem mnemonicParsing="false" text="Edit Category" />
+                  <MenuItem mnemonicParsing="false" onAction="#deleteListing" text="Delete Listing" />
+              </items>
+            </Menu>
+            <Menu fx:id="addToWishlist" mnemonicParsing="false" text="Add to Wishlist">
+              <items>
+                <MenuItem fx:id="addToWishlistMI" mnemonicParsing="false" onAction="#addToWishlist" text="Add to Wishlist" />
+              </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+    <SplitPane dividerPositions="0.2505567928730512, 0.7505567928730512" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+      <items>
+        <AnchorPane prefWidth="222.0">
+          <children>
+            <Label alignment="CENTER" layoutX="69.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Categories" textAlignment="CENTER" wrapText="false">
+              <font>
+                <Font size="18.0" fx:id="x1" />
+              </font>
+              <textFill>
+                <Color blue="0.624" green="0.624" red="0.624" fx:id="x2" />
+              </textFill>
+            </Label>
+                  <ListView fx:id="categoryList" layoutX="11.0" layoutY="50.0" prefHeight="502.0" prefWidth="200.0" />
+          </children>
+        </AnchorPane>
+        <ScrollPane prefWidth="443.0">
+          <content>
+            <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="697.0" prefWidth="430.0">
+              <children>
+                <Label alignment="CENTER" font="$x1" layoutX="13.0" layoutY="14.0" style="&#10;" text="Listings" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false" />
+                        <ListView fx:id="listingsList" layoutX="14.0" layoutY="49.0" prefHeight="463.0" prefWidth="402.0" />
+                        <RadioButton fx:id="mostRecent" layoutX="98.0" layoutY="532.0" mnemonicParsing="false" text="Most Recent">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="sort" />
+                          </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="lowToHigh" layoutX="195.0" layoutY="532.0" mnemonicParsing="false" text="Low to High">
+                          <toggleGroup>
+                            <fx:reference source="sort" />
+                          </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="HighToLow" layoutX="297.0" layoutY="532.0" mnemonicParsing="false" text="High to Low">
+                          <toggleGroup>
+                            <fx:reference source="sort" />
+                          </toggleGroup>
+                        </RadioButton>
+                        <TextField fx:id="searchKey" layoutX="115.0" layoutY="15.0" prefHeight="25.0" prefWidth="210.0" promptText="Type keyword here..." />
+                        <Button layoutX="330.0" layoutY="15.0" mnemonicParsing="false" onAction="#search" prefHeight="25.0" prefWidth="85.0" text="Search" />
+                        <Label layoutX="13.0" layoutY="527.0" text="Sort by" textFill="#9f9f9f">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="15.0" layoutY="588.0" text="Condition:" />
+                        <RadioButton fx:id="conditionNew" layoutX="119.0" layoutY="588.0" mnemonicParsing="false" text="New">
+                            <toggleGroup>
+                                <ToggleGroup fx:id="filter" />
+                            </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="conditionUsed" layoutX="214.0" layoutY="588.0" mnemonicParsing="false" text="Used">
+                            <toggleGroup>
+                            <fx:reference source="filter" />
+                        </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="conditionDefective" layoutX="294.0" layoutY="588.0" mnemonicParsing="false" text="Defective">
+                            <toggleGroup>
+                            <fx:reference source="filter" />
+                        </toggleGroup>
+                        </RadioButton>
+                        <Label layoutX="12.0" layoutY="632.0" text="Price range:" />
+                        <TextField fx:id="minimumPrice" layoutX="120.0" layoutY="628.0" prefHeight="26.0" prefWidth="126.0" promptText="Minimal price in DKK" />
+                        <TextField fx:id="maximumPrice" layoutX="273.0" layoutY="628.0" prefHeight="26.0" prefWidth="134.0" promptText="Maximum price in DKK" />
+                        <Label layoutX="84.0" layoutY="632.0" text="From" />
+                        <Label layoutX="256.0" layoutY="632.0" text="To" />
+                        <Label layoutX="183.0" layoutY="554.0" text="Filter by" textFill="#9f9f9f">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="121.0" layoutY="672.0" mnemonicParsing="false" onAction="#filter" prefHeight="22.0" prefWidth="86.0" text="Filter">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="230.0" layoutY="672.0" mnemonicParsing="false" onAction="#clear" prefHeight="18.0" prefWidth="85.0" text="Clear">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Button>
+              </children>
+            </AnchorPane>
+          </content>
+        </ScrollPane>
+        <AnchorPane>
+          <children>
+            <Label alignment="CENTER" font="$x1" layoutX="56.0" layoutY="14.0" style="&#10;" text="Listing Details" textAlignment="CENTER" textFill="$x2" wrapText="false" />
+                  <Label layoutX="10.0" layoutY="50.0" text="Title:" />
+                  <Label layoutX="14.0" layoutY="339.0" text="Description:" />
+                  <Label layoutX="9.0" layoutY="102.0" text="Price:" />
+                  <Label layoutX="11.0" layoutY="154.0" text="City:" />
+                  <Label layoutX="10.0" layoutY="206.0" text="Condition:" />
+                  <Label layoutX="13.0" layoutY="258.0" text="Contacts:" />
+                  <Label fx:id="title" alignment="TOP_LEFT" layoutX="10.0" layoutY="68.0" prefHeight="34.0" prefWidth="200.0" />
+                  <Label fx:id="price" alignment="TOP_LEFT" layoutX="11.0" layoutY="120.0" prefHeight="34.0" prefWidth="200.0" />
+                  <Label fx:id="city" alignment="TOP_LEFT" layoutX="10.0" layoutY="172.0" prefHeight="34.0" prefWidth="200.0" />
+                  <Label fx:id="condition" alignment="TOP_LEFT" layoutX="10.0" layoutY="224.0" prefHeight="34.0" prefWidth="200.0" />
+                  <Label fx:id="contacts" alignment="TOP_LEFT" layoutX="10.0" layoutY="279.0" prefHeight="58.0" prefWidth="200.0" />
+                  <TextArea fx:id="description" editable="false" layoutX="10.0" layoutY="357.0" prefHeight="202.0" prefWidth="200.0" wrapText="true" />
+          </children>
+        </AnchorPane>
+      </items>
+    </SplitPane>
+    <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">
+      <children>
+        <Label fx:id="loggedAs" maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Left status" HBox.hgrow="ALWAYS">
+          <font>
+            <Font size="11.0" fx:id="x3" />
+          </font>
+          <textFill>
+            <Color blue="0.625" green="0.625" red="0.625" fx:id="x4" />
+          </textFill>
+        </Label>
+        <Pane prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
+        <Label font="$x3" maxWidth="-1.0" text="Right status" textFill="$x4" HBox.hgrow="NEVER" />
+      </children>
+      <padding>
+        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+      </padding>
+    </HBox>
+  </children>
+</VBox>
