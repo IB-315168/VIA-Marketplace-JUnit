@@ -8,8 +8,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="VIA-Marketplace-JUnit" />
         <module name="client" />
-        <module name="server" />
         <module name="shared" />
+        <module name="server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

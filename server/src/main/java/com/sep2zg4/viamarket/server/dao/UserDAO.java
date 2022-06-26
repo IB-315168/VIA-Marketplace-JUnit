@@ -50,13 +50,14 @@ public class UserDAO implements Dao<User>
 
   @Override public void create(User user) throws SQLException
   {
-    String query = "INSERT INTO person (studentNumber, fullName, phoneNumber, email, isModerator) VALUES ?,?,?,?,?";
+    String query = "INSERT INTO person (studentNumber, fullName, password, phoneNumber, email, isModerator) VALUES (?,?,?,?,?,?)";
     PreparedStatement insertStatement = connection.prepareStatement(query);
     insertStatement.setInt(1, user.getId());
     insertStatement.setString(2, user.getFullName());
-    insertStatement.setString(3, user.getPhoneNumber());
-    insertStatement.setString(4, user.getEmail());
-    insertStatement.setBoolean(5, user.isModerator());
+    insertStatement.setString(3, "testtest");
+    insertStatement.setString(4, user.getPhoneNumber());
+    insertStatement.setString(5, user.getEmail());
+    insertStatement.setBoolean(6, user.isModerator());
     insertStatement.executeUpdate();
   }
 

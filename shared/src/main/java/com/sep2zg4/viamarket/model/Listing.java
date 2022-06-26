@@ -5,6 +5,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Locale;
+import java.util.Objects;
 
 /**
  * Class representing an item on the marketplace.
@@ -142,5 +143,19 @@ public class Listing implements Serializable
 
   @Override public String toString() {
     return title + " - " + price + "DKK";
+  }
+
+  @Override public boolean equals(Object o)
+  {
+    if (this == o)
+      return true;
+    if (o == null || getClass() != o.getClass())
+      return false;
+    Listing listing = (Listing) o;
+    return id == listing.id && Double.compare(listing.price, price) == 0
+        && Objects.equals(categoryName, listing.categoryName) && Objects.equals(
+        title, listing.title) && Objects.equals(description,
+        listing.description) && Objects.equals(city, listing.city)
+        && Objects.equals(condition, listing.condition) && Objects.equals(seller, listing.seller);
   }
 }

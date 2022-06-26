@@ -3,6 +3,7 @@ package com.sep2zg4.viamarket.model;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.Objects;
 
 /**
  * Class representing user on the marketplace.
@@ -67,5 +68,17 @@ public class User implements Serializable
   public boolean isModerator()
   {
     return isModerator;
+  }
+
+  @Override public boolean equals(Object o)
+  {
+    if (this == o)
+      return true;
+    if (o == null || getClass() != o.getClass())
+      return false;
+    User user = (User) o;
+    return id == user.id && isModerator == user.isModerator && Objects.equals(
+        fullName, user.fullName) && Objects.equals(phoneNumber,
+        user.phoneNumber) && Objects.equals(email, user.email);
   }
 }

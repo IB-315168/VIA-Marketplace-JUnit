@@ -30,7 +30,7 @@ public class ListingDAO implements Dao<Listing>
     selectStatement.setInt(1, id);
     ResultSet res = selectStatement.executeQuery();
     res.next();
-    String category = getCategoryNameFromId(res.getInt("idCategory"));
+    String category = getCategoryNameFromId(res.getInt("idcategory"));
     return new Listing(res.getInt("id"), category, res.getString("title"),
         res.getString("description"), res.getDouble("price"),
         res.getString("city"), res.getString("condition"),

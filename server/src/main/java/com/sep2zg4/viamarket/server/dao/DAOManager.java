@@ -9,6 +9,7 @@ import dk.via.remote.observer.RemotePropertyChangeSupport;
 import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
@@ -52,9 +53,44 @@ public final class DAOManager
     if (connection == null || connection.isClosed())
     {
       connection = DriverManager.getConnection(
-          "jdbc:postgresql://abul.db.elephantsql.com/unnmkiby", "unnmkiby",
-          "9rQAlABdHOKbbTS46V662goUMd2IjnKZ");
+          "jdbc:postgresql://abul.db.elephantsql.com/hhhjuqgd", "hhhjuqgd",
+          "wxdqoaKUpqn_6iqvgnhXVPjWe5ULyMyW");
+      connection.setSchema("via_market");
     }
+  }
+
+  public void resetDatabase() throws SQLException
+  {
+    if (connection == null || connection.isClosed())
+    {
+      this.open();
+    }
+    String query = "DROP SCHEMA IF EXISTS via_market CASCADE;\n"
+        + "create schema via_market;\n" + "set schema 'via_market';\n" + "\n"
+        + "\n" + "create table person\n" + "(\n"
+        + "    studentNumber int primary key check (studentNumber > 100000 AND studentNumber < 999999),\n"
+        + "    fullName      varchar(30)        not null,\n"
+        + "    password      varchar(30)        not null check (length(password) > 7),\n"
+        + "    phoneNumber   varchar(15) unique not null,\n"
+        + "    email         varchar(30),\n"
+        + "    isModerator   boolean            not null\n" + ");\n" + "\n"
+        + "create table category\n" + "(\n"
+        + "    idCategory serial primary key,\n"
+        + "    name       varchar(30) unique\n" + ");\n" + "\n"
+        + "create table listing\n" + "(\n"
+        + "    id            serial primary key,\n"
+        + "    title         varchar(20),\n"
+        + "    description   varchar(500),\n" + "    price         float,\n"
+        + "    city          varchar(20),\n"
+        + "    condition     varchar(10),\n"
+        + "    studentNumber int references person (studentNumber) on delete cascade,\n"
+        + "    idCategory    int references category (idCategory) on delete set null\n"
+        + ");\n" + "\n" + "create table wishlist\n" + "(\n"
+        + "    studentNumber int references person (studentNumber) on delete cascade,\n"
+        + "    idListing     int references listing (id) on delete cascade\n"
+        + ");\n";
+    PreparedStatement statement = connection.prepareStatement(query);
+    statement.executeUpdate();
   }
 
   public void close() throws SQLException
